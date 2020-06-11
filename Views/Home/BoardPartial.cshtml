@@ -1,0 +1,25 @@
+﻿@model Board
+
+<div class="thread board yotsuba_b_new ws">
+    <div class="board">
+        <div class="postContainer opContainer" id="@("pc" + Model.Id)">
+            <div id="@("p" + Model.Id)" class="post op">
+                <div class="postInfo">
+                    <span class="nameBlock">
+                        <span class="name">@Model.Creator.Name</span>
+                        <a asp-controller="Home" asp-action="GetBoard" asp-route-id="@Model.Id" class="subject">@Model.Theme</a>
+                    </span>
+                </div><blockquote class="postMessage" id="@("m" + Model.Id)">@Model.Text</blockquote>
+            </div>
+        </div>
+        <div class="thread">
+
+            @foreach (var post in Model.Posts)
+            {
+                await Html.RenderPartialAsync("Post", post);
+                <hr/>
+            }
+        </div>
+    </div>
+</div>
+<hr/>

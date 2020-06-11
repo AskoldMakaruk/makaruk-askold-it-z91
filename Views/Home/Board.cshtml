@@ -1,0 +1,27 @@
+﻿@model Board
+
+@{
+    await Html.RenderPartialAsync("BoardPartial", Model);
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <form method="post" asp-controller="Home" asp-action="PostReply">
+        <input hidden name="boardId" value="@Model.Id"/>
+        <table class="postForm" id="postForm" style="display: table;">
+            <tbody>
+            <tr data-type="Comment">
+                <td>Comment</td>
+                <td>
+                    <textarea name="text" cols="48" rows="4" tabindex="4" wrap="soft"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Post" tabindex="6">
+                </td>
+            </tr>
+            </tbody
+            >
+        </table>
+    </form>
+}

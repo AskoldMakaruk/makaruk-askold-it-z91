@@ -1,0 +1,32 @@
+﻿@model List<Board>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (Context.User.IsInRole("admin"))
+{
+    <h3 style="text-align: center">Add new board</h3>
+    <form method="post" asp-controller="Home" asp-action="CreateBoard">
+        <table class="postForm" id="postForm" style="display: table;">
+            <tbody>
+            <tr data-type="Subject">
+                <td>Subject</td>
+                <td>
+                    <input name="sub" type="text" tabindex="3">
+                    <input type="submit" value="Post" tabindex="6">
+                </td>
+            </tr>
+            <tr data-type="Comment">
+                <td>Comment</td>
+                <td>
+                    <textarea name="com" cols="48" rows="4" tabindex="4" wrap="soft"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+}
+
+@foreach (var b in Model)
+{
+    @(await Html.PartialAsync("BoardPartial", b))
+}

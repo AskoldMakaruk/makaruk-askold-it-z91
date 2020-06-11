@@ -1,0 +1,13 @@
+﻿@model Post
+@{
+    var id = Model.Id;
+}
+<div class="postContainer replyContainer" id="@("pc" + id)">
+    <div id="@("p" + id)" class="post reply">
+        <div class="postInfo" id="@("pi" + id)">
+            <span class="nameBlock">
+                <span class="name">@Model.PostedBy.Name</span>
+            </span>
+        </div><blockquote class="postMessage" id="@("m" + id)">@Model.Text</blockquote>
+    </div>
+</div>
